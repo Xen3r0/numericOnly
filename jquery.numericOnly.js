@@ -3,18 +3,16 @@
  * Copyright (c) 2006-2010 Manuel SANTISTEBAN (http://www.xenero-developpement.com/)
  * 
  * Version 1.0
- * Demo: http://www.xenero-developpement.com/demo/jquery/numericOnly/
+ * Demo: http://www.xenero-developpement.com/demo/jquery/numericOnly/demo/
  *
  */
 $.fn.numericOnly = function(options) {
-	// Paramètres par défaut
-	var defauts = {
+	var defaults = {
 		"decimal": true,
-		"separateur": "."
+		"separator": "."
 	};
 	
-	// Mise à jour des paramètres
-	var params = $.extend(defauts, options);
+	var params = $.extend(defaults, options);
 	
 	return this.each(function() {
 		$(this).keydown(function(e) {
@@ -24,9 +22,9 @@ $.fn.numericOnly = function(options) {
 				return true
 			
 			if (params.decimal) {
-				if(this.value.indexOf(params.separateur) >= 0) return false;
-				if(params.separateur == "," && key == 188) return true;
-				if(params.separateur == "." && (key == 110 || key == 190)) return true;
+				if(this.value.indexOf(params.separator) >= 0) return false;
+				if(params.separator == "," && key == 188) return true;
+				if(params.separator == "." && (key == 110 || key == 190)) return true;
 			}
 			
 			return false;

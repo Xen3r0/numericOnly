@@ -8,26 +8,41 @@
 		<script type="text/javascript" src="../jquery.numericOnly.js"></script>
 		
 		<script type="text/javascript">
-			$('input#decimal').numericOnly();
-			$('input#integer').numericOnly({
-				decimal : false
+			$(document).ready(function() {
+				$('input#decimal').numericOnly();
+				$('input#decimal_separator').numericOnly({
+					separator : ','
+				});
+				$('input#integer').numericOnly({
+					decimal : false
+				});
 			});
 		</script>
 		
 		<style type="text/css">
-			#integer_source {width:500px; padding:5px;background-color:#f0f0f0;border:1px solid #e1e1e1;border-left:4px solid #e1e1e1;}
+			.code {width:500px; padding:5px;background-color:#f0f0f0;border:1px solid #e1e1e1;border-left:4px solid #e1e1e1;}
 		</style>
 	</head>
 	<body>
-		<h3>Only decimal</h3>
-		<input type="number" name="decimal" id="decimal" />
-		<div id="decimal_source">
+		<h2>Only decimal</h2>
+		<input type="text" name="decimal" id="decimal" />
+		<div class="code">
 			$('input#decimal').numericOnly();
 		</div>
 		<br />
-		<h3>Only integer</h3>
-		<input type="number" name="integer" id="integer" />
-		<div id="integer_source">
+		
+		<h2>Only decimal with other separator</h2>
+		<input type="text" name="decimal_separator" id="decimal_separator" />
+		<div class="code">
+			$('input#decimal_separator').numericOnly({
+				separator : ','
+			});
+		</div>
+		<br />
+		
+		<h2>Only integer</h2>
+		<input type="text" name="integer" id="integer" />
+		<div class="code">
 			$('input#integer').numericOnly({
 				decimal : false
 			});
