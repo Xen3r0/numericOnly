@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Demo numericOnly, plugin jQuery</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<script type="text/javascript" src="./jquery.js"></script>
+		<script type="text/javascript" src="../jquery.numericOnly.js"></script>
+		
+		<script type="text/javascript">
+			$('input#decimal').numericOnly();
+			$('input#integer').numericOnly({
+				decimal : false
+			});
+		</script>
+		
+		<style type="text/css">
+			#integer_source {width:500px; padding:5px;background-color:#f0f0f0;border:1px solid #e1e1e1;border-left:4px solid #e1e1e1;}
+		</style>
+	</head>
+	<body>
+		<h3>Only decimal</h3>
+		<input type="number" name="decimal" id="decimal" />
+		<div id="decimal_source">
+			$('input#decimal').numericOnly();
+		</div>
+		<br />
+		<h3>Only integer</h3>
+		<input type="number" name="integer" id="integer" />
+		<div id="integer_source">
+			$('input#integer').numericOnly({
+				decimal : false
+			});
+		</div>
+	</body>
+</html>
