@@ -15,16 +15,47 @@ $.fn.numericOnly = function(options) {
 	var params = $.extend(defaults, options);
 	
 	return this.each(function() {
-		$(this).keydown(function(e) {
+		$(this).keypress(function(e) {
 			var key = e.charCode ? e.charCode : e.keyCode ? e.keyCode : 0;
 			
-			if (key == 8 || key == 9 || key == 46 || (key >= 37 && key <= 40) || (key >= 48 && key <= 57 && e.shiftKey) || (key >= 96 && key <= 105))
+			// Enter
+			if (key == 13)
+				return true;
+			
+			// CTRL+A
+			if((e.ctrlKey && key == 97 /* Firefox */) || (e.ctrlKey && key == 65) /* Opera */)
+				return true;
+			
+			// CTRL+X (couper)
+			if((e.ctrlKey && key == 120 /* Firefox */) || (e.ctrlKey && key == 88) /* Opera */)
+				return true;
+			
+			// CTRL+C (copier)
+			if((e.ctrlKey && key == 99 /* Firefox */) || (e.ctrlKey && key == 67) /* Opera */)
+				return true;
+			
+			// CTRL+V (coller), Shift+Ins
+			if((e.ctrlKey && key == 118 /* Firefox */) || (e.ctrlKey && key == 86) /* Opera */ || (e.shiftKey && key == 45))
+				return true;
+			
+			// CTRL+Z (annuler)
+			if((e.ctrlKey && key == 122 /* Firefox */) || (e.ctrlKey && key == 90) /* Opera */)
+				return true;
+			
+			// Dans le cas d'un chiffre (0 à 9)
+			if ((key >= 48 && key <= 57))
 				return true
 			
+			// Dans le cas d'un chiffre à virgule
 			if (params.decimal) {
-				if(this.value.indexOf(params.separator) >= 0) return false;
-				if(params.separator == "," && key == 188) return true;
-				if(params.separator == "." && (key == 110 || key == 190)) return true;
+				if(this.value.indexOf(params.separator) >= 0)
+					return false;
+				
+				if(params.separator == "," && key == 44)
+					return true;
+				
+				if(params.separator == "." && key == 46)
+					return true;
 			}
 			
 			return false;
